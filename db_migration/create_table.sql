@@ -54,3 +54,15 @@ INSERT INTO categories (name) VALUES
 ('4x4'),
 ('Coupé'),
 ('Utilitaire');
+
+CREATE TABLE notifications (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id),
+    purchase_id UUID REFERENCES purchases(id) ON DELETE CASCADE,
+    message TEXT NOT NULL,
+    is_read BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_notifications_user
+ON notifications(user_id);
