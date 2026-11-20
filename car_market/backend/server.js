@@ -8,9 +8,12 @@ const app = express();
 
 const authRoutes = require("./routes/auth.routes");
 
+const carRoutes = require("./routes/car.routes");
+
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/cars", carRoutes);
 
 app.get("/", (req, res) => {
     res.json({
